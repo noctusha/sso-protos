@@ -10,6 +10,7 @@ service Auth {
   rpc Login (LoginRequest) returns (LoginResponse);
   rpc Logout (LogoutRequest) returns (LogoutResponse);
   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+  rpc Validate (ValidateRequest) returns (ValidateResponse);
 }
 
 message RegisterRequest {
@@ -50,4 +51,15 @@ message IsAdminRequest {
 
 message IsAdminResponse {
   bool is_admin = 1; // Indicates whether the user is admin
+}
+
+
+message ValidateRequest {
+  string token = 1; // token to validate
+}
+
+message ValidateResponse {
+  int64 user_id = 1; // validated UserID
+  int32 app_id = 2; // validated appID
+  string email = 3; // email of the validated user
 }

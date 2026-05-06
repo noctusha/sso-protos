@@ -405,6 +405,110 @@ func (x *IsAdminResponse) GetIsAdmin() bool {
 	return false
 }
 
+type ValidateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"` // token to validate
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateRequest) Reset() {
+	*x = ValidateRequest{}
+	mi := &file_sso_sso_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateRequest) ProtoMessage() {}
+
+func (x *ValidateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_sso_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateRequest.ProtoReflect.Descriptor instead.
+func (*ValidateRequest) Descriptor() ([]byte, []int) {
+	return file_sso_sso_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ValidateRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type ValidateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // validated UserID
+	AppId         int32                  `protobuf:"varint,2,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`    // validated appID
+	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`                  // email of the validated user
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateResponse) Reset() {
+	*x = ValidateResponse{}
+	mi := &file_sso_sso_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateResponse) ProtoMessage() {}
+
+func (x *ValidateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_sso_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateResponse.ProtoReflect.Descriptor instead.
+func (*ValidateResponse) Descriptor() ([]byte, []int) {
+	return file_sso_sso_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ValidateResponse) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *ValidateResponse) GetAppId() int32 {
+	if x != nil {
+		return x.AppId
+	}
+	return 0
+}
+
+func (x *ValidateResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 var File_sso_sso_proto protoreflect.FileDescriptor
 
 const file_sso_sso_proto_rawDesc = "" +
@@ -429,12 +533,19 @@ const file_sso_sso_proto_rawDesc = "" +
 	"\x0eIsAdminRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\",\n" +
 	"\x0fIsAdminResponse\x12\x19\n" +
-	"\bis_admin\x18\x01 \x01(\bR\aisAdmin2\xe0\x01\n" +
+	"\bis_admin\x18\x01 \x01(\bR\aisAdmin\"'\n" +
+	"\x0fValidateRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"X\n" +
+	"\x10ValidateResponse\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x15\n" +
+	"\x06app_id\x18\x02 \x01(\x05R\x05appId\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email2\x9b\x02\n" +
 	"\x04Auth\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x120\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x123\n" +
 	"\x06Logout\x12\x13.auth.LogoutRequest\x1a\x14.auth.LogoutResponse\x126\n" +
-	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponseB\x17Z\x15noctusha.sso.v1;ssov1b\x06proto3"
+	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponse\x129\n" +
+	"\bValidate\x12\x15.auth.ValidateRequest\x1a\x16.auth.ValidateResponseB\x17Z\x15noctusha.sso.v1;ssov1b\x06proto3"
 
 var (
 	file_sso_sso_proto_rawDescOnce sync.Once
@@ -448,7 +559,7 @@ func file_sso_sso_proto_rawDescGZIP() []byte {
 	return file_sso_sso_proto_rawDescData
 }
 
-var file_sso_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_sso_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_sso_sso_proto_goTypes = []any{
 	(*RegisterRequest)(nil),  // 0: auth.RegisterRequest
 	(*RegisterResponse)(nil), // 1: auth.RegisterResponse
@@ -458,18 +569,22 @@ var file_sso_sso_proto_goTypes = []any{
 	(*LogoutResponse)(nil),   // 5: auth.LogoutResponse
 	(*IsAdminRequest)(nil),   // 6: auth.IsAdminRequest
 	(*IsAdminResponse)(nil),  // 7: auth.IsAdminResponse
+	(*ValidateRequest)(nil),  // 8: auth.ValidateRequest
+	(*ValidateResponse)(nil), // 9: auth.ValidateResponse
 }
 var file_sso_sso_proto_depIdxs = []int32{
 	0, // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
 	2, // 1: auth.Auth.Login:input_type -> auth.LoginRequest
 	4, // 2: auth.Auth.Logout:input_type -> auth.LogoutRequest
 	6, // 3: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	1, // 4: auth.Auth.Register:output_type -> auth.RegisterResponse
-	3, // 5: auth.Auth.Login:output_type -> auth.LoginResponse
-	5, // 6: auth.Auth.Logout:output_type -> auth.LogoutResponse
-	7, // 7: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	8, // 4: auth.Auth.Validate:input_type -> auth.ValidateRequest
+	1, // 5: auth.Auth.Register:output_type -> auth.RegisterResponse
+	3, // 6: auth.Auth.Login:output_type -> auth.LoginResponse
+	5, // 7: auth.Auth.Logout:output_type -> auth.LogoutResponse
+	7, // 8: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
+	9, // 9: auth.Auth.Validate:output_type -> auth.ValidateResponse
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -486,7 +601,7 @@ func file_sso_sso_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sso_sso_proto_rawDesc), len(file_sso_sso_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
