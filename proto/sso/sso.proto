@@ -8,6 +8,7 @@ option go_package = "noctusha.sso.v1;ssov1"; // 1. noctusha.sso.v1 - import path
 service Auth {
   rpc Register (RegisterRequest) returns (RegisterResponse);
   rpc Login (LoginRequest) returns (LoginResponse);
+  rpc Logout (LogoutRequest) returns (LogoutResponse);
   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
 }
 
@@ -29,6 +30,17 @@ message LoginRequest {
 
 message LoginResponse {
   string token = 1; // Auth token of the logged user
+}
+
+
+message LogoutRequest {
+  int64 user_id = 1; // ID of the user to logout
+  int32 app_id = 2; // ID of the app to logout from
+  string token = 3; // Auth token to blacklist
+}
+
+message LogoutResponse {
+  // Пусто — успех определяется отсутствием ошибки gRPC
 }
 
 
